@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: catalog
+  namespace: retail-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: catalog
+  template:
+    metadata:
+      labels:
+        app: catalog
+    spec:
+      containers:
+      - name: catalog
+        image: public.ecr.aws/aws-containers/retail-store-sample-catalog:0.6.0
+        env:
+        - name: DB_TYPE
+          value: "mysql"
+        - name: DB_HOST
+          value: "bedrock-catalog-db.c123456789.us-east-1.rds.amazonaws.com"
+        - name: DB_PORT
+          value: "3306"
+        - name: DB_NAME
+          value: "catalog"
+        - name: DB_USER
+          value: "catalog_user"
+        - name: DB_PASSWORD
+          value: "BedrockSecure2026!"
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: catalog
+  namespace: retail-app
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app: catalog

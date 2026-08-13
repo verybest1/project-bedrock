@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ui
+  namespace: retail-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ui
+  template:
+    metadata:
+      labels:
+        app: ui
+    spec:
+      containers:
+      - name: ui
+        image: public.ecr.aws/aws-containers/retail-store-sample-ui:0.6.0
+        env:
+        - name: ENDPOINT_CATALOG
+          value: "http://catalog.retail-app.svc.cluster.local"
+        - name: ENDPOINT_ORDERS
+          value: "http://orders.retail-app.svc.cluster.local"
+        - name: ENDPOINT_CARTS
+          value: "http://carts.retail-app.svc.cluster.local"
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ui
+  namespace: retail-app
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app: ui
