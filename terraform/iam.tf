@@ -38,7 +38,7 @@ resource "aws_eks_access_entry" "dev_entry" {
 resource "aws_eks_access_policy_association" "dev_policy" {
   cluster_name  = aws_eks_cluster.main.name
   principal_arn = aws_iam_user.dev_user.arn
-  policy_arn    = "arn:aws:eKS:aws:cluster-access-policy/AmazonEKSViewPolicy"
+  policy_arn    = "arn:aws:eks:aws:cluster-access-policy/AmazonEKSViewPolicy"
 
   access_scope {
     type       = "namespace"
