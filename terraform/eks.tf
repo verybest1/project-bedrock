@@ -23,7 +23,7 @@ resource "aws_iam_role_policy_attachment" "cluster_AmazonEKSClusterPolicy" {
 resource "aws_eks_cluster" "main" {
   name     = var.cluster_name
   role_arn = aws_iam_role.cluster_role.arn
-  version  = "1.29"
+  version  = "1.31"
 
   # Control Plane Logging Enabled for Grading Requirements
   enabled_cluster_log_types = ["api", "audit", "authenticator", "controllerManager", "scheduler"]
