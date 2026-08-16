@@ -1,6 +1,6 @@
 # Developer IAM User
 resource "aws_iam_user" "dev_user" {
-  name = "bedrock-dev-view"
+  name = "bedrock-dev-view-v2"
 }
 
 resource "aws_iam_user_policy_attachment" "dev_readonly" {

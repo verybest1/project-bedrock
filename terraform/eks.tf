@@ -1,6 +1,6 @@
 # IAM Role for EKS Cluster
 resource "aws_iam_role" "cluster_role" {
-  name = "project-bedrock-cluster-role"
+  name = "project-bedrock-cluster-role-v2"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -43,7 +43,7 @@ resource "aws_eks_cluster" "main" {
 
 # IAM Role for Managed Node Group
 resource "aws_iam_role" "node_role" {
-  name = "project-bedrock-node-role"
+  name = "project-bedrock-node-role-v2"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"

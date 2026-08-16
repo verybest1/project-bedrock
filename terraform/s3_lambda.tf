@@ -1,6 +1,6 @@
 # S3 Bucket for Retail Assets
 resource "aws_s3_bucket" "assets" {
-  bucket        = "bedrock-assets-${var.student_id}"
+  bucket        = "bedrock-assets-${var.student_id}-v2"
   force_destroy = true
 }
 
@@ -14,7 +14,7 @@ resource "aws_s3_bucket_public_access_block" "assets_privacy" {
 
 # IAM Role for Lambda
 resource "aws_iam_role" "lambda_role" {
-  name = "bedrock-lambda-execution-role"
+  name = "project-bedrock-lambda-execution-role-v2"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
