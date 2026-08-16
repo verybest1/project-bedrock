@@ -1,5 +1,5 @@
 resource "aws_db_subnet_group" "rds" {
-  name       = "project-bedrock-db-subnet-group-v2"
+  name       = "project-bedrock-db-subnet-group-v3"
   subnet_ids = aws_subnet.private[*].id
 }
 
@@ -31,7 +31,7 @@ resource "aws_security_group" "db_sg" {
 }
 
 resource "aws_db_instance" "mysql" {
-  identifier             = "bedrock-catalog-db-v2"
+  identifier             = "bedrock-catalog-db-v3"
   allocated_storage      = 20
   engine                 = "mysql"
   engine_version         = "8.0"
@@ -45,7 +45,7 @@ resource "aws_db_instance" "mysql" {
 }
 
 resource "aws_db_instance" "postgres" {
-  identifier             = "bedrock-orders-db-v2"
+  identifier             = "bedrock-orders-db-v3"
   allocated_storage      = 20
   engine                 = "postgres"
   engine_version         = "15"
@@ -59,7 +59,7 @@ resource "aws_db_instance" "postgres" {
 }
 
 resource "aws_dynamodb_table" "carts" {
-  name         = "bedrock-carts-v2"
+  name         = "bedrock-carts-v3"
   billing_mode = "PAY_PER_REQUEST"
   hash_key     = "id"
 

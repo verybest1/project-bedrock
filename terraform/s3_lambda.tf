@@ -1,6 +1,6 @@
 # S3 Bucket for Retail Assets
 resource "aws_s3_bucket" "assets" {
-  bucket        = "bedrock-assets-${var.student_id}-v2"
+  bucket        = "bedrock-assets-${var.student_id}-v3"
   force_destroy = true
 }
 
@@ -14,7 +14,7 @@ resource "aws_s3_bucket_public_access_block" "assets_privacy" {
 
 # IAM Role for Lambda
 resource "aws_iam_role" "lambda_role" {
-  name = "project-bedrock-lambda-execution-role-v2"
+  name = "project-bedrock-lambda-execution-role-v3"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -43,7 +43,7 @@ data "archive_file" "lambda_zip" {
 # Lambda Function Definition
 resource "aws_lambda_function" "asset_processor" {
   filename         = data.archive_file.lambda_zip.output_path
-  function_name    = "bedrock-asset-processor-v2"
+  function_name    = "bedrock-asset-processor-v3"
   role             = aws_iam_role.lambda_role.arn
   handler          = "index.handler"
   runtime          = "python3.12"
