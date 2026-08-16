@@ -1,7 +1,9 @@
 # Terraform temporary files
 .terraform/
 *.tfstate
-*.tfstate.backup
+*.tfstate.*
+**/terraform.tfstate
+**/terraform.tfstate.*
 *.tfvars
 .terraform.lock.hcl
 
