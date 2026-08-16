@@ -31,7 +31,7 @@ resource "aws_security_group" "db_sg" {
 }
 
 resource "aws_db_instance" "mysql" {
-  identifier             = "bedrock-catalog-db"
+  identifier             = "bedrock-catalog-db-v2"
   allocated_storage      = 20
   engine                 = "mysql"
   engine_version         = "8.0"
@@ -45,7 +45,7 @@ resource "aws_db_instance" "mysql" {
 }
 
 resource "aws_db_instance" "postgres" {
-  identifier             = "bedrock-orders-db"
+  identifier             = "bedrock-orders-db-v2"
   allocated_storage      = 20
   engine                 = "postgres"
   engine_version         = "15"
