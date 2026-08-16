@@ -43,7 +43,7 @@ data "archive_file" "lambda_zip" {
 # Lambda Function Definition
 resource "aws_lambda_function" "asset_processor" {
   filename         = data.archive_file.lambda_zip.output_path
-  function_name    = "bedrock-asset-processor-v3"
+  function_name    = "bedrock-asset-processor-v4"
   role             = aws_iam_role.lambda_role.arn
   handler          = "index.handler"
   runtime          = "python3.12"

@@ -4,7 +4,7 @@ metadata:
   name: orders
   namespace: retail-app
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: orders
@@ -15,12 +15,12 @@ spec:
     spec:
       containers:
       - name: orders
-        image: public.ecr.aws/aws-containers/retail-store-sample-orders:0.6.0
+        image: public.ecr.aws/aws-containers/retail-store-sample-orders:latest
         env:
         - name: DB_TYPE
           value: "postgres"
         - name: DB_HOST
-          value: "bedrock-orders-db.c123456789.us-east-1.rds.amazonaws.com"
+          value: "bedrock-orders-db-v3.ccxegocasft9.us-east-1.rds.amazonaws.com"
         - name: DB_PORT
           value: "5432"
         - name: DB_NAME

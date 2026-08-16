@@ -4,7 +4,7 @@ metadata:
   name: ui
   namespace: retail-app
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: ui
@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: ui
-        image: public.ecr.aws/aws-containers/retail-store-sample-ui:0.6.0
+        image: public.ecr.aws/aws-containers/retail-store-sample-ui:latest
         env:
         - name: ENDPOINT_CATALOG
           value: "http://catalog.retail-app.svc.cluster.local"

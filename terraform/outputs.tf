@@ -22,3 +22,11 @@ output "assets_bucket_name" {
   value       = aws_s3_bucket.assets.id
   description = "S3 Assets Bucket Name"
 }
+
+output "mysql_endpoint" {
+  value = aws_db_instance.mysql.endpoint
+}
+
+output "postgres_endpoint" {
+  value = aws_db_instance.postgres.endpoint
+}

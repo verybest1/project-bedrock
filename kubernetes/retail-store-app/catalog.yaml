@@ -4,7 +4,7 @@ metadata:
   name: catalog
   namespace: retail-app
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: catalog
@@ -15,12 +15,12 @@ spec:
     spec:
       containers:
       - name: catalog
-        image: public.ecr.aws/aws-containers/retail-store-sample-catalog:0.6.0
+        image: public.ecr.aws/aws-containers/retail-store-sample-catalog:latest
         env:
         - name: DB_TYPE
           value: "mysql"
         - name: DB_HOST
-          value: "bedrock-catalog-db.c123456789.us-east-1.rds.amazonaws.com"
+          value: "bedrock-catalog-db-v3.ccxegocasft9.us-east-1.rds.amazonaws.com"
         - name: DB_PORT
           value: "3306"
         - name: DB_NAME
