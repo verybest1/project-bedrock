@@ -1,6 +1,6 @@
 # S3 Bucket for Retail Assets
 resource "aws_s3_bucket" "assets" {
-  bucket        = "bedrock-assets-${var.student_id}-v3"
+  bucket        = "bedrock-assets-878359978914-v3"
   force_destroy = true
 }
 
