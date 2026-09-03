@@ -49,3 +49,16 @@ jobs:
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: terraform apply -auto-approve
         working-directory: terraform
+
+      - name: Configure kubectl for EKS Cluster
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: aws eks update-kubeconfig --region us-east-1 --name project-bedrock-cluster
+
+      - name: Deploy Application Kubernetes Manifests
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: |
+          kubectl apply -f kubernetes/namespace.yaml
+          kubectl apply -f kubernetes/catalog.yaml
+          kubectl apply -f kubernetes/carts.yaml
+          kubectl apply -f kubernetes/orders.yaml
+          kubectl apply -f kubernetes/ui.yaml
