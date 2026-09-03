@@ -57,8 +57,8 @@ jobs:
       - name: Deploy Application Kubernetes Manifests
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: |
-          kubectl apply -f ./kubernetes/namespace.yaml
-          kubectl apply -f ./kubernetes/catalog.yaml
-          kubectl apply -f ./kubernetes/carts.yaml
-          kubectl apply -f ./kubernetes/orders.yaml
-          kubectl apply -f ./kubernetes/ui.yaml
+          kubectl apply -f ./namespace.yaml
+          kubectl apply -f ./catalog.yaml
+          kubectl apply -f ./carts.yaml
+          kubectl apply -f ./orders.yaml
+          kubectl apply -f ./ui.yaml
