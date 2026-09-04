@@ -20,7 +20,7 @@ spec:
         - name: DB_TYPE
           value: "mysql"
         - name: DB_HOST
-          value: "bedrock-catalog-db-v3.ccxegocasft9.us-east-1.rds.amazonaws.com"
+          value: "bedrock-catalog-db-v3.c6hkkao6y6hh.us-east-1.rds.amazonaws.com"
         - name: DB_PORT
           value: "3306"
         - name: DB_NAME
