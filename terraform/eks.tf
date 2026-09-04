@@ -113,4 +113,18 @@ resource "aws_eks_access_policy_association" "admin_user_policy" {
   access_scope {
     type = "cluster"
   }
+resource "aws_eks_access_entry" "pipeline_access" {
+  cluster_name  = aws_eks_cluster.this.name
+  principal_arn = "arn:aws:iam::878359978914:root"
+  type          = "STANDARD"
+}
+
+resource "aws_eks_access_policy_association" "pipeline_admin" {
+  cluster_name  = aws_eks_cluster.this.name
+  policy_arn    = "arn:aws:iam::aws:policy/AmazonEKSClusterAdminPolicy"
+  principal_arn = aws_eks_access_entry.pipeline_access.principal_arn
+
+  access_scope {
+    type = "cluster"
+  }
 }
