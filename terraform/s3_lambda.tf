@@ -1,6 +1,6 @@
 # S3 Bucket for Retail Assets
 resource "aws_s3_bucket" "assets" {
-  bucket        = "bedrock-assets-878359978914-v3"
+  bucket        = "bedrock-assets-alt-soe-tin-025-0260"
   force_destroy = true
 }
 
