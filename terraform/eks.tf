@@ -118,7 +118,7 @@ resource "aws_eks_access_policy_association" "admin_user_policy" {
 
 resource "aws_eks_access_entry" "pipeline_access" {
   cluster_name  = aws_eks_cluster.main.name
-  principal_arn = "arn:aws:iam::878359978914:root"
+  principal_arn = aws_iam_user.dev_user.arn
   type          = "STANDARD"
 }
 
