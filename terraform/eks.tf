@@ -1,4 +1,4 @@
-data.aws_caller_identity.current {}
+data "aws_caller_identity" "current" {}
 
 resource "aws_iam_role" "cluster_role" {
   name = "project-bedrock-cluster-role-v3"
@@ -86,7 +86,6 @@ resource "aws_eks_node_group" "main" {
   ]
 }
 
-# Automatically grant admin access to whatever identity is running Terraform/GitHub Actions
 resource "aws_eks_access_entry" "pipeline_caller" {
   cluster_name  = aws_eks_cluster.main.name
   principal_arn = data.aws_caller_identity.current.arn
