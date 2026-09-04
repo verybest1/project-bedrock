@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: carts
-        image: public.ecr.aws/aws-containers/retail-store-sample-carts:0.3.0
+        image: public.ecr.aws/aws-containers/retail-store-sample-cart:latest
         env:
         - name: CARTS_DYNAMODB_TABLENAME
           value: "bedrock-carts"
