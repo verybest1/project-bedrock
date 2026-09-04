@@ -1,3 +1,5 @@
+data.aws_caller_identity.current {}
+
 resource "aws_iam_role" "cluster_role" {
   name = "project-bedrock-cluster-role-v3"
 
@@ -84,32 +86,17 @@ resource "aws_eks_node_group" "main" {
   ]
 }
 
-resource "aws_eks_access_entry" "dev_entry" {
+# Automatically grant admin access to whatever identity is running Terraform/GitHub Actions
+resource "aws_eks_access_entry" "pipeline_caller" {
   cluster_name  = aws_eks_cluster.main.name
-  principal_arn = aws_iam_user.dev_user.arn
+  principal_arn = data.aws_caller_identity.current.arn
   type          = "STANDARD"
 }
 
-resource "aws_eks_access_policy_association" "dev_policy" {
-  cluster_name  = aws_eks_cluster.main.name
-  policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSViewPolicy"
-  principal_arn = aws_iam_user.dev_user.arn
-
-  access_scope {
-    type = "cluster"
-  }
-}
-
-resource "aws_eks_access_entry" "pipeline_access" {
-  cluster_name  = aws_eks_cluster.main.name
-  principal_arn = "arn:aws:iam::878359978914:root"
-  type          = "STANDARD"
-}
-
-resource "aws_eks_access_policy_association" "pipeline_admin" {
+resource "aws_eks_access_policy_association" "pipeline_caller_policy" {
   cluster_name  = aws_eks_cluster.main.name
   policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
-  principal_arn = aws_eks_access_entry.pipeline_access.principal_arn
+  principal_arn = aws_eks_access_entry.pipeline_caller.principal_arn
 
   access_scope {
     type = "cluster"
